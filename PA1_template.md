@@ -197,6 +197,38 @@ head(activityImputed)
 ## 6  0.000000 2012-10-06        0
 ```
 
+4. Make a histogram of the total number of steps taken each day and calculate and report the mean and median total number of steps taken per day.  
+
+Based on the graphs and mean/median calculated below, it does not appear that replacing the NA's with imputed values had significant impact.
+
+
+```r
+stepsTotal2 <- summarize(group_by(activityImputed, date), sum = sum(steps))
+hist(stepsTotal2$sum)
+```
+
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
+
+```r
+library(ggplot2)
+ggplot(stepsTotal2, aes(x=sum)) + geom_histogram(binwidth = 1000)
+```
+
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-2.png) 
+
+```r
+mean <- mean(stepsTotal2$sum)
+median <- median(stepsTotal2$sum)
+mean; median
+```
+
+```
+## [1] 10766.19
+```
+
+```
+## [1] 10766.19
+```
 
 ## 5. Are there differences in activity patterns between weekdays and weekends?
 1. Create a new factor variable in the dataset with two levels, indicating whether a given date is a weekday or weekend day.
@@ -258,5 +290,5 @@ library(lattice)
 xyplot(aveSteps ~ interval | dayType, data = intervalAverage3, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png) 
 

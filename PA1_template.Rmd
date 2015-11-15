@@ -93,6 +93,19 @@ These are the first rows of the data set after imputing NA's.  You can see that 
 head(activityImputed)
 ```
 
+4. Make a histogram of the total number of steps taken each day and calculate and report the mean and median total number of steps taken per day.  
+
+Based on the graphs and mean/median calculated below, it does not appear that replacing the NA's with imputed values had significant impact.
+
+```{r}
+stepsTotal2 <- summarize(group_by(activityImputed, date), sum = sum(steps))
+hist(stepsTotal2$sum)
+library(ggplot2)
+ggplot(stepsTotal2, aes(x=sum)) + geom_histogram(binwidth = 1000)
+mean <- mean(stepsTotal2$sum)
+median <- median(stepsTotal2$sum)
+mean; median
+```
 
 ## 5. Are there differences in activity patterns between weekdays and weekends?
 1. Create a new factor variable in the dataset with two levels, indicating whether a given date is a weekday or weekend day.
