@@ -11,15 +11,6 @@ output: html_document
 activity <- read.csv("./activity.csv")
 ```
 
-```
-## Warning in file(file, "rt"): cannot open file './activity.csv': No such
-## file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
 2. Process/transform the data into a format suitable for the analysis
 - convert date column from factor to date class
 - remove all rows with NA's
